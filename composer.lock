@@ -1,0 +1,56 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "8136fa8fd0a5dd921923593f5ee81b59",
+    "packages": [
+        {
+            "name": "ospina/curlcobain",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JSebastianOspina/CurlCobain.git",
+                "reference": "062381dee238322769959bcbe9059a1eac91ef1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JSebastianOspina/CurlCobain/zipball/062381dee238322769959bcbe9059a1eac91ef1e",
+                "reference": "062381dee238322769959bcbe9059a1eac91ef1e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ospina\\CurlCobain\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Ospina",
+                    "email": "sebastianospinacontacto@gmail.com"
+                }
+            ],
+            "description": "Easy Curl for everybody, forget about manual long curl configuration",
+            "support": {
+                "issues": "https://github.com/JSebastianOspina/CurlCobain/issues",
+                "source": "https://github.com/JSebastianOspina/CurlCobain/tree/1.0.0"
+            },
+            "time": "2022-03-23T21:07:20+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
+}
