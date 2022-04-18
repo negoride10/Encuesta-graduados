@@ -16,7 +16,7 @@ $formattedData = formatData($result);
 $finalUrl = buildUrl($formattedData);
 
 //dd($finalUrl);
-header('Location: '.$finalUrl);
+header('Location: ' . $finalUrl);
 function buildUrl($formattedData)
 {
     return GOOGLE_FORM_URL . '?' . http_build_query($formattedData);
@@ -42,10 +42,10 @@ function formatData($result)
     return $finalResult;
 }
 
-function searchUser(Array $request)
+function searchUser(array $request)
 {
-    //TODO: Hacer la petición
-    $endpoint = 'https://academia.unibague.edu.co/atlante/graduados.php';
+    //$endpoint = 'https://academia.unibague.edu.co/atlante/graduados.php';
+    $endpoint = 'https://academia.unibague.edu.co/atlante/graduados_sia.php';
     $curl = new \Ospina\CurlCobain\CurlCobain($endpoint);
     $curl->setQueryParamsAsArray([
         'consulta' => 'Consultar',
@@ -58,7 +58,7 @@ function searchUser(Array $request)
     return json_decode($response, true)[0];
 }
 
- function getFormItems()
+function getFormItems()
 {
     return [
         "Nombres" => ["answer" => null, "googleFormId" => "entry.98280260"],
@@ -90,7 +90,7 @@ function parseRequest()
 
 function verifyRequest(array $request)
 {
-    if (empty($request['identification_number']) || empty($request['day']) || empty($request['month']) ) {
+    if (empty($request['identification_number']) || empty($request['day']) || empty($request['month'])) {
         return ['error' => true, 'msg' => 'Por favor ingresa tu número de documento y fecha de nacimiento'];
     }
     return ['error' => false];
@@ -102,3 +102,4 @@ function dd($var)
     print_r($var);
     die();
 }
+
