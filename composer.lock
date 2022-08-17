@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8136fa8fd0a5dd921923593f5ee81b59",
+    "content-hash": "b014ff8ae756317a1845e909013e1422",
     "packages": [
         {
             "name": "ospina/curlcobain",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JSebastianOspina/CurlCobain.git",
-                "reference": "062381dee238322769959bcbe9059a1eac91ef1e"
+                "reference": "c8e4cddf8188e881983051670046bafba46d2360"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JSebastianOspina/CurlCobain/zipball/062381dee238322769959bcbe9059a1eac91ef1e",
-                "reference": "062381dee238322769959bcbe9059a1eac91ef1e",
+                "url": "https://api.github.com/repos/JSebastianOspina/CurlCobain/zipball/c8e4cddf8188e881983051670046bafba46d2360",
+                "reference": "c8e4cddf8188e881983051670046bafba46d2360",
                 "shasum": ""
             },
             "type": "library",
@@ -39,9 +39,43 @@
             "description": "Easy Curl for everybody, forget about manual long curl configuration",
             "support": {
                 "issues": "https://github.com/JSebastianOspina/CurlCobain/issues",
-                "source": "https://github.com/JSebastianOspina/CurlCobain/tree/1.0.0"
+                "source": "https://github.com/JSebastianOspina/CurlCobain/tree/1.0.1"
             },
-            "time": "2022-03-23T21:07:20+00:00"
+            "time": "2022-08-11T04:03:02+00:00"
+        },
+        {
+            "name": "ospina/smart-query-builder",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JSebastianOspina/Smart-Query-Builder.git",
+                "reference": "5984c78a319bb9d73a5d574541d805c30356465d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JSebastianOspina/Smart-Query-Builder/zipball/5984c78a319bb9d73a5d574541d805c30356465d",
+                "reference": "5984c78a319bb9d73a5d574541d805c30356465d",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ospina\\SmartQueryBuilder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Sebastian Ospina",
+                    "email": "sebastianospinacontacto@gmail.com"
+                }
+            ],
+            "description": "Easy Query Builder for php",
+            "support": {
+                "issues": "https://github.com/JSebastianOspina/Smart-Query-Builder/issues",
+                "source": "https://github.com/JSebastianOspina/Smart-Query-Builder/tree/1.0.1"
+            },
+            "time": "2022-08-17T15:15:59+00:00"
         }
     ],
     "packages-dev": [],
@@ -50,7 +84,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-json": "*"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"
 }

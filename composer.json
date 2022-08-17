@@ -1,6 +1,8 @@
 {
     "require": {
         "ospina/curlcobain": "^1.0",
-      "ext-json": "*"
+      "ext-json": "*",
+        "ospina/smart-query-builder": "^1.0",
+      "ext-mysqli": "*"
     }
 }
