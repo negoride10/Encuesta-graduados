@@ -4,8 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b014ff8ae756317a1845e909013e1422",
+    "content-hash": "c6a4ebb9e556dbe1ba9cc988ebc39573",
     "packages": [
+        {
+            "name": "eftec/bladeone",
+            "version": "4.5.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EFTEC/BladeOne.git",
+                "reference": "3d83f5d527a5582f9937ad648705ec3223f39dba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EFTEC/BladeOne/zipball/3d83f5d527a5582f9937ad648705ec3223f39dba",
+                "reference": "3d83f5d527a5582f9937ad648705ec3223f39dba",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "suggest": {
+                "eftec/bladeonehtml": "Extension to create forms",
+                "ext-mbstring": "This extension is used if it's active"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "eftec\\bladeone\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jorge Patricio Castro Castillo",
+                    "email": "jcastro@eftec.cl"
+                }
+            ],
+            "description": "The standalone version Blade Template Engine from Laravel in a single php file",
+            "homepage": "https://github.com/EFTEC/BladeOne",
+            "keywords": [
+                "blade",
+                "php",
+                "template",
+                "templating",
+                "view"
+            ],
+            "support": {
+                "issues": "https://github.com/EFTEC/BladeOne/issues",
+                "source": "https://github.com/EFTEC/BladeOne/tree/4.5.5"
+            },
+            "time": "2022-07-16T14:05:23+00:00"
+        },
         {
             "name": "ospina/curlcobain",
             "version": "1.0.1",
@@ -49,12 +105,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/JSebastianOspina/Smart-Query-Builder.git",
-                "reference": "5984c78a319bb9d73a5d574541d805c30356465d"
+                "reference": "93af6b57c63ebea641a6d4ae58edbdd78a26f6dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JSebastianOspina/Smart-Query-Builder/zipball/5984c78a319bb9d73a5d574541d805c30356465d",
-                "reference": "5984c78a319bb9d73a5d574541d805c30356465d",
+                "url": "https://api.github.com/repos/JSebastianOspina/Smart-Query-Builder/zipball/93af6b57c63ebea641a6d4ae58edbdd78a26f6dc",
+                "reference": "93af6b57c63ebea641a6d4ae58edbdd78a26f6dc",
                 "shasum": ""
             },
             "type": "library",
@@ -75,7 +131,7 @@
                 "issues": "https://github.com/JSebastianOspina/Smart-Query-Builder/issues",
                 "source": "https://github.com/JSebastianOspina/Smart-Query-Builder/tree/1.0.1"
             },
-            "time": "2022-08-17T15:15:59+00:00"
+            "time": "2022-08-17T16:49:31+00:00"
         }
     ],
     "packages-dev": [],
@@ -85,7 +141,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-mysqli": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"

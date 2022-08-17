@@ -17,15 +17,16 @@ $smartQueryBuilder->insert([
     'email' => $email,
     'identification_number' => $identification_number,
     'is_graduated' => $isGraduated,
-    'answer' => $answer,
+    'answers' => $answer,
     'created_at' => date('Y-m-d H:i:s'),
 ]);
 
 $query = $smartQueryBuilder->getQuery();
-
-$connection = OspinaMysqlHelper::newMysqlObject('form_egresados', 'local');
+$connection = OspinaMysqlHelper::newMysqlObject('encuesta_graduados', 'local');
 $mysqlResponse = $connection->makeQuery($query);
 dd($mysqlResponse);
+
+
 function getEmailFromRequest($request)
 {
     return $request->code_user;
@@ -33,7 +34,7 @@ function getEmailFromRequest($request)
 
 function getAnswersFromRequestAsJsonText($request)
 {
-    return json_encode($request->answers,JSON_UNESCAPED_UNICODE);
+    return json_encode($request->answers, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
 }
 
 
@@ -55,24 +56,18 @@ function verifyIfIsGraduated(string $identification_number): bool
 function getIdentificationNumberFromRequest($request)
 {
     $identificationNumberQuestionName = 'Número de identificación';
-    return $request->answers[$identificationNumberQuestionName];
+    return $request->answers->$identificationNumberQuestionName;
 }
 
+/**
+ * @throws JsonException
+ */
 function parseRequest()
 {
-    return (object)[
-        "code_user" => "juan.ospina@unibague.edu.co",
-        "answers" => [
-            "Número de identificación" => "1234644399",
-            "Preguna 1" => "Opción 1",
-            "Pregunta abierta" => "asasasas"
-        ],
-        "form_id" => "1dO_iwTu3KaMB-dsjyu3Tf2uuWrvDfxSb-E_zB4oW8KY",
-        "questions" => [
-            "Preguna 1" => "MULTIPLE_CHOICE",
-            "Pregunta abierta" => "PARAGRAPH_TEXT"
-        ]
-    ];
+
+    $data = file_get_contents('./data.json');
+    //$data = file_get_contents('php//input');
+    return json_decode($data, false, 512, JSON_THROW_ON_ERROR);
 
 }
 

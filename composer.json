@@ -3,6 +3,7 @@
         "ospina/curlcobain": "^1.0",
       "ext-json": "*",
         "ospina/smart-query-builder": "^1.0",
-      "ext-mysqli": "*"
+      "ext-mysqli": "*",
+        "eftec/bladeone": "^4.5"
     }
 }

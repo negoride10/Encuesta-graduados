@@ -1,0 +1,13 @@
+{
+  "code_user": "juan.ospina@unibague.edu.co",
+  "answers": {
+    "Número de identificación" : "1234644399",
+    "Preguna 1": "Opción 1",
+    "Pregunta abierta": "asasasas"
+  },
+  "form_id": "1dO_iwTu3KaMB-dsjyu3Tf2uuWrvDfxSb-E_zB4oW8KY",
+  "questions": {
+    "Preguna 1": "MULTIPLE_CHOICE",
+    "Pregunta abierta": "PARAGRAPH_TEXT"
+  }
+}
