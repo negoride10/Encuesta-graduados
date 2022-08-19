@@ -49,6 +49,7 @@ $smartQueryBuilder->insert([
 ]);
 
 $query = $smartQueryBuilder->getQuery();
+
 $connection = OspinaMysqlHelper::newMysqlObject('encuesta_graduados', 'local');
 $mysqlResponse = $connection->makeQuery($query);
 dd($mysqlResponse);
@@ -113,9 +114,8 @@ function getAnswersFromRequestAsJsonText($request)
 /**
  * @throws JsonException
  */
-function verifyIfIsGraduated(string $identification_number): bool
+function verifyIfIsGraduated(string $identification_number): int
 {
-
     $endpoint = 'https://academia.unibague.edu.co/atlante/graduados_siga.php';
     $curl = new \Ospina\CurlCobain\CurlCobain($endpoint);
     $curl->setQueryParamsAsArray([
