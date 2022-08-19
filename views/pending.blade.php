@@ -49,9 +49,8 @@
                         <td>{{$answer['email']}}</td>
                         <td>{{$answer['created_at']}}</td>
                         <td>
-                            <a href="/result.php?id={{$answer['ID']}}" class="btn btn-primary">Ver respuestas</a>
-                            <button type="button" class="btn btn-success">Aprobar</button>
-                            <button type="button" class="btn btn-danger">Cancelar</button>
+                            <button type="button" class="btn btn-success">Aprobar datos ingresados</button>
+                            <button type="button" class="btn btn-danger">Rechazar</button>
                         </td>
                     </tr>
                 @endforeach
@@ -82,20 +81,15 @@
                         <td>{{$answer['email']}}</td>
                         <td>{{$answer['created_at']}}</td>
                         <td>
-                            <a href="/result.php?id={{$answer['ID']}}" class="btn btn-primary">Ver respuestas</a>
-                            <button type="button" class="btn btn-success">Aprobar</button>
-                            <button type="button" class="btn btn-danger">Cancelar</button>
+                            <button type="button" class="btn btn-primary">Volver a sincronizar</button>
+                            <button type="button" class="btn btn-danger">Rechazar</button>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
-
             </table>
-
         </div>
-
     </div>
-
 </main>
 
 <footer class="footer mt-auto py-3 bg-dark">
