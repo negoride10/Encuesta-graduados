@@ -49,7 +49,8 @@
                         <td>{{$answer['email']}}</td>
                         <td>{{$answer['created_at']}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary">Aprobar</button>
+                            <a href="/result.php?id={{$answer['ID']}}" class="btn btn-primary">Ver respuestas</a>
+                            <button type="button" class="btn btn-success">Aprobar</button>
                             <button type="button" class="btn btn-danger">Cancelar</button>
                         </td>
                     </tr>
@@ -81,7 +82,8 @@
                         <td>{{$answer['email']}}</td>
                         <td>{{$answer['created_at']}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary">Aprobar</button>
+                            <a href="/result.php?id={{$answer['ID']}}" class="btn btn-primary">Ver respuestas</a>
+                            <button type="button" class="btn btn-success">Aprobar</button>
                             <button type="button" class="btn btn-danger">Cancelar</button>
                         </td>
                     </tr>
@@ -98,7 +100,7 @@
 
 <footer class="footer mt-auto py-3 bg-dark">
     <div class="container">
-        <span class="h2 text-white">Universidad de Ibagué ©</span>
+        <span class="h3 text-white">Universidad de Ibagué ©</span>
     </div>
 </footer>
 {{--BOOTSTRAP JS--}}
