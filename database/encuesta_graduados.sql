@@ -11,4 +11,5 @@ created_at DATETIME,
 is_confirmed TINYINT, 
 modificated_at DATETIME, 
 has_error TINYINT
+
 );
