@@ -2,44 +2,52 @@
 require 'vendor/autoload.php';
 require 'Helpers/OspinaMysqlHelper.php';
 
-/* Recibir el ID del (parámetro get)*/
+use eftec\bladeone\BladeOne;
+use Ospina\SmartQueryBuilder\SmartQueryBuilder;
+
+/* 1) Recibir el ID de la URL (parametro get)*/
 $id = getIdFromRequest();
 
-/* Consultar ese ID en las DB*/
+
+/*2) Consultar ese ID en la DB*/
 $mysql = OspinaMysqlHelper::newMysqlObject('encuesta_graduados', 'local');
 
-//Building the query
-$sql = "SELECT * FROM form_answers WHERE id=$id";
-$queryBuilder = \Ospina\SmartQueryBuilder\SmartQueryBuilder::table('form_answers');
+//building the query
+$queryBuilder = SmartQueryBuilder::table('form_answers');
 $query = $queryBuilder->select(['*'])
     ->where('id', '=', $id);
-$finalquery = $query->getQuery();
+$finalQuery = $query->getQuery();
 
-//Execute the query
-$result = $mysql->makeQuery($finalquery);
+//Execute query
+$result = $mysql->makeQuery($finalQuery);
 $finalResult = $result->fetch_all(MYSQLI_ASSOC);
-dd($finalResult);
 
-/* Obtener los campos necesarios (cedula, correo, respuestas)*/
+//dd($finalResult);
+/*3) Obtener los campos necesarios (cedula, correo, respuestas)*/
+$finalResult = $finalResult[0];
 
+$email = $finalResult['email'];
+$identificationNumber = $finalResult['identification_number'];
+$answers = $finalResult['answers'];
 
-
-/* Parsear las respuestas*/
-
-
-
-/* Construir front*/
-
-
-
-/* Enviar datos al front para renderizar*/
+/*4) Parsear respuestas*/
+$answersAsObject = json_decode($answers, true, 512, JSON_THROW_ON_ERROR);
 
 
+/*5) Construir front*/
+//Esta en result.blade
 
+/*6) Enviar datos al front para renderizar*/
+$blade = new BladeOne(); // MODE_DEBUG allows to pinpoint troubles.
 
-//En este espacio comienzan las funciones a ejecutar - Modo refactor es el método Optimizar el código)
+try {
+    echo $blade->run("result", compact('email', 'identificationNumber', 'answersAsObject'));
+} catch (Exception $e) {
+    echo 'Ha ocurrido un error';
+}
 
-function getIdFromRequest(){
+function getIdFromRequest()
+{
     return $_GET['id'];
 }
 
