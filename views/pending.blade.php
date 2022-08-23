@@ -98,7 +98,11 @@
                                        value="{{$answer['identification_number']}}">
                                 <button type="submit" class="btn btn-primary">Volver a sincronizar</button>
                             </form>
-                            <button type="button" class="btn btn-danger">Rechazar</button>
+
+                            <form action="/deny.php" method="POST">
+                                <input type="text" name="id" value="{{$answer['ID']}}" hidden>
+                                <button type="submit" class="btn btn-danger">Rechazar</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
