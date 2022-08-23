@@ -20,6 +20,8 @@ try {
     echo 'Ha ocurrido un error';
 }
 
+
+
 function dd($var)
 {
     header('Content-Type: application/json;charset=utf-8');
