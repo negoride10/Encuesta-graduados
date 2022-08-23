@@ -7,11 +7,18 @@ use Ospina\EasySQL\EasySQL;
 
 //create db object
 $graduatedAnswersConnection = new EasySQL('encuesta_graduados', 'local');
-$graduatedAnswers = $graduatedAnswersConnection->table('form_answers')->select(['*'])->where('is_graduated', '=', 1)->get();
+$graduatedAnswers = $graduatedAnswersConnection->table('form_answers')->select(['*'])
+    ->where('is_graduated', '=', 1)
+    ->isNull('is_confirmed')
+    ->get();
+
 
 //create db object
 $notGraduatedAnswersConnection = new EasySQL('encuesta_graduados', 'local');
-$notGraduatedAnswers = $notGraduatedAnswersConnection->table('form_answers')->select(['*'])->where('is_graduated', '=', 0)->get();
+$notGraduatedAnswers = $notGraduatedAnswersConnection->table('form_answers')->select(['*'])
+    ->where('is_graduated', '=', 0)
+    ->isNull('is_confirmed')
+    ->get();
 
 $blade = new BladeOne();
 try {
@@ -19,7 +26,6 @@ try {
 } catch (Exception $e) {
     echo 'Ha ocurrido un error';
 }
-
 
 
 function dd($var)
