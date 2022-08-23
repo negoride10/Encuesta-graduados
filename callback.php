@@ -1,6 +1,8 @@
 <?php
+
+use Ospina\EasySQL\EasySQL;
+
 require 'vendor/autoload.php';
-require 'Helpers/OspinaMysqlHelper.php';
 //parse the request
 try {
     $request = parseRequest();
@@ -31,9 +33,9 @@ try {
     $isGraduated = false;
 }
 
-//Generate query
-$smartQueryBuilder = \Ospina\SmartQueryBuilder\SmartQueryBuilder::table('form_answers');
-$smartQueryBuilder->insert([
+//Final data Object
+
+$data = [
     'email' => $email,
     'identification_number' => $identification_number,
     'name' => $name,
@@ -46,13 +48,13 @@ $smartQueryBuilder->insert([
     'is_graduated' => $isGraduated,
     'answers' => $answer,
     'created_at' => date('Y-m-d H:i:s'),
-]);
+];
+//Get DB Object
 
-$query = $smartQueryBuilder->getQuery();
+$easySQL = new EasySQL('encuesta_graduados', 'local');
+$easySQL->table('form_answers')->insert($data);
 
-$connection = OspinaMysqlHelper::newMysqlObject('encuesta_graduados', 'local');
-$mysqlResponse = $connection->makeQuery($query);
-dd($mysqlResponse);
+$easySQL->dd();
 
 
 function getNameFromRequest($request): string
@@ -137,11 +139,9 @@ function getIdentificationNumberFromRequest($request)
  */
 function parseRequest()
 {
-
     $data = file_get_contents('./data.json');
     //$data = file_get_contents('php//input');
     return json_decode($data, false, 512, JSON_THROW_ON_ERROR);
-
 }
 
 function dd($var)

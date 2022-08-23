@@ -2,8 +2,8 @@
     "require": {
         "ospina/curlcobain": "^1.0",
       "ext-json": "*",
-        "ospina/smart-query-builder": "^1.0",
       "ext-mysqli": "*",
-        "eftec/bladeone": "^4.5"
+        "eftec/bladeone": "^4.5",
+        "ospina/easy-sql": "^1.0"
     }
 }
