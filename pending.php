@@ -3,27 +3,17 @@ require 'vendor/autoload.php';
 require 'Helpers/OspinaMysqlHelper.php';
 
 use eftec\bladeone\BladeOne;
-use Ospina\SmartQueryBuilder\SmartQueryBuilder;
+use Ospina\EasySQL\EasySQL;
 
+//create db object
+$graduatedAnswersConnection = new EasySQL('encuesta_graduados', 'local');
+$graduatedAnswers = $graduatedAnswersConnection->table('form_answers')->select(['*'])->where('is_graduated', '=', 1)->get();
 
-//get queries
-$graduatedQuery = getGraduatedQuery();
-$notGraduatedQuery = getNotGraduatedQuery();
+//create db object
+$notGraduatedAnswersConnection = new EasySQL('encuesta_graduados', 'local');
+$notGraduatedAnswers = $notGraduatedAnswersConnection->table('form_answers')->select(['*'])->where('is_graduated', '=', 0)->get();
 
-//Get general connection
-$connection = OspinaMysqlHelper::newMysqlObject('encuesta_graduados', 'local');
-
-//make graduated query
-$mysqlGraduatedResponse = $connection->makeQuery($graduatedQuery);
-$graduatedAnswers = $mysqlGraduatedResponse->fetch_all(MYSQLI_ASSOC);
-
-//make not graduated query
-$mysqlNotGraduatedResponse = $connection->makeQuery($notGraduatedQuery);
-$notGraduatedAnswers = $mysqlNotGraduatedResponse->fetch_all(MYSQLI_ASSOC);
-
-
-$blade = new BladeOne(); // MODE_DEBUG allows to pinpoint troubles.
-
+$blade = new BladeOne();
 try {
     echo $blade->run("pending", compact('graduatedAnswers', 'notGraduatedAnswers'));
 } catch (Exception $e) {
@@ -35,26 +25,4 @@ function dd($var)
     header('Content-Type: application/json;charset=utf-8');
     echo json_encode($var);
     die();
-}
-
-/**
- * @return string|null
- */
-function getGraduatedQuery(): ?string
-{
-    $smartQueryBuilder = SmartQueryBuilder::table('form_answers');
-    $smartQueryBuilder->select(['*'])->where('is_graduated', '=', 1);
-    $query = $smartQueryBuilder->getQuery();
-    return $query;
-}
-
-/**
- * @return string|null
- */
-function getNotGraduatedQuery(): ?string
-{
-    $smartQueryBuilder = SmartQueryBuilder::table('form_answers');
-    $smartQueryBuilder->select(['*'])->where('is_graduated', '=', 0);
-    $query = $smartQueryBuilder->getQuery();
-    return $query;
 }
