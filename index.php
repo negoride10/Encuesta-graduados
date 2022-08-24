@@ -1,5 +1,9 @@
 <?php
-require 'vendor/autoload.php';
-use Ospina\EasySQL\EasySQL;
+session_start();
+require 'Helpers/Auth.php';
+//Check if is auth
+verifyIsAuthenticated();
 
-$easySQL = new EasySQL('encuesta_graduados', 'local');
+$redirectUri = '/pending.php';
+header("Location: $redirectUri");
+die();

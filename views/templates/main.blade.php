@@ -9,19 +9,29 @@
     <script src="/tablefilter/tablefilter.js"></script>
 
     {{--SCRIPTS AND CSS--}}
-
+    {!! $header !!}
 </head>
 <body class="d-flex flex-column justify-content-between h-100">
 <header>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
+            <a class="navbar-brand d-flex align-items-center" href="/">
                 <img src="https://www.unibague.edu.co/images/2022/Unibague-4.0.png"
                      alt="">
-                <span class="h3 ms-2">
-            Encuesta de egresados
-        </span>
+                <span class="h3 ms-2">Encuesta de egresados</span>
             </a>
+            @if(auth())
+                <div class="d-flex align-items-center">
+                     <span class="text-white">
+                    {{user()}}
+                    </span>
+
+                    <form action="/logout.php" method="POST">
+                        <button type="submit" class="btn btn-dark">Cerrar sesión</button>
+                    </form>
+                </div>
+
+            @endif
         </div>
     </nav>
 </header>
