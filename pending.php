@@ -1,9 +1,13 @@
 <?php
+session_start();
 require 'vendor/autoload.php';
-require 'Helpers/OspinaMysqlHelper.php';
-
+require 'Helpers/Auth.php';
 use eftec\bladeone\BladeOne;
 use Ospina\EasySQL\EasySQL;
+
+//Check if is auth
+verifyIsAuthenticated();
+
 
 //create db object
 $graduatedAnswersConnection = new EasySQL('encuesta_graduados', 'local');

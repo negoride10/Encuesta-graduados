@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb723b1e18a1512cce3ae9999ef2aa51",
+    "content-hash": "b36ec16263b754853f9cdbfa8442e061",
     "packages": [
         {
             "name": "eftec/bladeone",
@@ -160,6 +160,43 @@
                 "source": "https://github.com/JSebastianOspina/CurlCobain/tree/1.0.1"
             },
             "time": "2022-08-11T04:03:02+00:00"
+        },
+        {
+            "name": "ospina/easy-ldap",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JSebastianOspina/Easy-LDAP.git",
+                "reference": "91b604f695890779a07395c3621ca60de5b22b9d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JSebastianOspina/Easy-LDAP/zipball/91b604f695890779a07395c3621ca60de5b22b9d",
+                "reference": "91b604f695890779a07395c3621ca60de5b22b9d",
+                "shasum": ""
+            },
+            "require": {
+                "vlucas/phpdotenv": "^5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ospina\\EasyLDAP\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Sebastian Ospina",
+                    "email": "sebastianospinacontacto@gmail.com"
+                }
+            ],
+            "description": "PHP Class for working with LDAP in and extremely easy way.",
+            "support": {
+                "issues": "https://github.com/JSebastianOspina/Easy-LDAP/issues",
+                "source": "https://github.com/JSebastianOspina/Easy-LDAP/tree/1.0.0"
+            },
+            "time": "2022-08-24T15:28:16+00:00"
         },
         {
             "name": "ospina/easy-sql",
