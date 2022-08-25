@@ -3,17 +3,16 @@ require 'vendor/autoload.php';
 require 'Helpers/OspinaMysqlHelper.php';
 
 //Leer y parsear la petición del front (ID)
-$requestData = getDatafromPostRequest();
-$id = getIdFromRequest();
+$requestData = getDataFromPostRequest();
 
 //Crear un método para volver a sincronizar - Función (verifyIfIsGraduated) arroja 0 o 1
 try {
-    $response = verifyIfIsGraduated();
-} catch (JsonException $e) {
+    $isGraduated = verifyIfIsGraduated($requestData->identificationNumber);
+    } catch (JsonException $e) {
 }
 
 //Actualizar DataBase
-$mysql = OspinaMysqlHelper::newMysqlObject('encuesta_graduados','local');
+
 
 
 //Mostrar en front el usuario actualizado y removido de "No encontrado"
@@ -21,7 +20,7 @@ $mysql = OspinaMysqlHelper::newMysqlObject('encuesta_graduados','local');
 
 //---------------- Functions-------------------
 
-function getDatafromPostRequest(){
+function getDataFromPostRequest():object{
 
     if (!isset($_POST['id'])){
          echo 'Debe proporcionar un ID válido';
@@ -34,19 +33,10 @@ function getDatafromPostRequest(){
     $id = $_POST['id'];
     $identificationNumber = $_POST['identification_number'];
 
-    $response = (object)[
+     return (object)[
         'id'=> $id,
         'identificationNumber'=> $identificationNumber,
         ];
-
-    var_dump($response);
-    die();
-    return $_POST['id'];
-}
-
-//Function for read the petitions from Front
-function getIdFromRequest(){
-    return $_GET['id'];
 }
 
 //Function for verify
