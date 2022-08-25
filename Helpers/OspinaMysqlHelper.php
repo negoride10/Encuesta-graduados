@@ -9,7 +9,6 @@ class OspinaMysqlHelper
     public function __construct($mysqli)
     {
         $this->mysqli = $mysqli;
-
     }
 
     public static function verifyConnectionErrors(mysqli $mysqli)
@@ -30,7 +29,6 @@ class OspinaMysqlHelper
         //No errors, return the instance
         return new self($mysqli);
     }
-
 
     public function makeQuery(string $query)
     {
