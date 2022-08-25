@@ -7,11 +7,11 @@
         <script src="/tablefilter/tablefilter.js"></script>
         {{--DISABLING FILTER ON LAST COLUMN--}}
         <style>
-            #flt4_table1 {
+            #flt10_table1 {
                 display: none;
             }
 
-            #flt4_table2 {
+            #flt10_table2 {
                 display: none;
             }
         </style>
@@ -42,7 +42,13 @@
             <tr>
                 <th scope="col">#ID</th>
                 <th scope="col">Cédula</th>
+                <th scope="col">Nombre</th>
                 <th scope="col">Correo electrónico</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Teléfono alterno</th>
+                <th scope="col">País</th>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Dirección</th>
                 <th scope="col">Fecha de recepción</th>
                 <th scope="col">Acciones</th>
             </tr>
@@ -52,11 +58,24 @@
                 <tr>
                     <th scope="row">{{$answer['ID']}}</th>
                     <td>{{$answer['identification_number']}}</td>
+                    <td>{{$answer['name']}} {{$answer['last_name']}}</td>
                     <td>{{$answer['email']}}</td>
+                    <td>{{$answer['mobile_phone']}}</td>
+                    <td>{{$answer['alternative_mobile_phone']}}</td>
+                    <td>{{$answer['country']}}</td>
+                    <td>{{$answer['city']}}</td>
+                    <td>{{$answer['address']}}</td>
                     <td>{{$answer['created_at']}}</td>
-                    <td>
-                        <button type="button" class="btn btn-success">Aprobar datos ingresados</button>
-                        <button type="button" class="btn btn-danger">Rechazar</button>
+                    <td class="align-middle">
+                        <div>
+                            <button type="button" class="btn btn-success d-block mb-2">Aprobar</button>
+                            <form action="/deny.php" method="POST"
+                                  onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro? Este será eliminado permanentemente de esta pantalla.')">
+                                <input type="text" name="id" value="{{$answer['ID']}}" hidden>
+                                <button type="submit" class="btn btn-danger">Rechazar</button>
+                            </form>
+                        </div>
+
                     </td>
                 </tr>
             @endforeach
@@ -74,7 +93,13 @@
             <tr>
                 <th scope="col">#ID</th>
                 <th scope="col">Cédula</th>
+                <th scope="col">Nombre</th>
                 <th scope="col">Correo electrónico</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Teléfono alterno</th>
+                <th scope="col">País</th>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Dirección</th>
                 <th scope="col">Fecha de recepción</th>
                 <th scope="col">Acciones</th>
             </tr>
@@ -84,17 +109,23 @@
                 <tr>
                     <th scope="row">{{$answer['ID']}}</th>
                     <td>{{$answer['identification_number']}}</td>
+                    <td>{{$answer['name']}} {{$answer['last_name']}}</td>
                     <td>{{$answer['email']}}</td>
+                    <td>{{$answer['mobile_phone']}}</td>
+                    <td>{{$answer['alternative_mobile_phone']}}</td>
+                    <td>{{$answer['country']}}</td>
+                    <td>{{$answer['city']}}</td>
+                    <td>{{$answer['address']}}</td>
                     <td>{{$answer['created_at']}}</td>
                     <td>
-                        <form action="/resynchronize.php" method="POST">
+                        <form action="/resynchronize.php" method="POST" class="d-inline">
                             <input type="text" name="id" value="{{$answer['ID']}}" hidden>
                             <input type="text" name="identification_number" hidden
                                    value="{{$answer['identification_number']}}">
                             <button type="submit" class="btn btn-primary">Volver a sincronizar</button>
                         </form>
 
-                        <form action="/deny.php" method="POST"
+                        <form action="/deny.php" method="POST" class="d-inline"
                               onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro? Este será eliminado permanentemente de esta pantalla.')">
                             <input type="text" name="id" value="{{$answer['ID']}}" hidden>
                             <button type="submit" class="btn btn-danger">Rechazar</button>
@@ -108,8 +139,6 @@
     @slot('scripts')
         <script>
             window.addEventListener('load', function () {
-
-
                 let tfConfig = {
                     paging: {
                         results_per_page: ['Resultados: ', [10, 25, 50, 100]]
@@ -142,8 +171,6 @@
 
                 const tf2 = new TableFilter(document.querySelector('#table2'), tfConfig);
                 tf2.init();
-
-
             })
         </script>
     @endslot
