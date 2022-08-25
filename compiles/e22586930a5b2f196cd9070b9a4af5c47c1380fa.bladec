@@ -17,9 +17,23 @@
  </style>
  <?php  $this->endSlot(); ?>
 
+ <?php if(isset($message)): ?>
+ <div class="toast align-items-center text-bg-danger border-0 position-fixed top-0 end-0 m-2" role="alert"
+ aria-live="assertive" aria-atomic="true" id="messages">
+ <div class="d-flex">
+ <div class="toast-body">
+ <?php echo \htmlentities($message, ENT_QUOTES, 'UTF-8', false); ?>
+
+ </div>
+ <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+ aria-label="Cerrar"></button>
+ </div>
+ </div>
+ <?php endif; ?>
+
  <?php if(isset($error)): ?>
  <div class="toast align-items-center text-bg-danger border-0 position-fixed top-0 end-0 m-2" role="alert"
- aria-live="assertive" aria-atomic="true" id="liveToast">
+ aria-live="assertive" aria-atomic="true" id="errors">
  <div class="d-flex">
  <div class="toast-body">
  <?php echo \htmlentities($error, ENT_QUOTES, 'UTF-8', false); ?>
@@ -125,7 +139,7 @@
  <input type="text" name="id" value="<?php echo \htmlentities($answer['id'], ENT_QUOTES, 'UTF-8', false); ?>" hidden>
  <input type="text" name="identification_number" hidden
  value="<?php echo \htmlentities($answer['identification_number'], ENT_QUOTES, 'UTF-8', false); ?>">
- <button type="submit" class="btn btn-primary">Volver a sincronizar</button>
+ <button type="submit" class="btn btn-primary d-block mb-2">Sincronizar</button>
  </form>
 
  <form action="/deny.php" method="POST" class="d-inline"
@@ -142,6 +156,24 @@
  <?php  $this->slot('scripts'); ?>
  <script>
  window.addEventListener('load', function () {
+ //Toast
+ <?php if(isset($error)): ?>
+
+ const errorToast = document.getElementById('errors')
+
+ const toast1 = new bootstrap.Toast(errorToast)
+ toast1.show();
+ <?php endif; ?>
+
+ <?php if(isset($message)): ?>
+
+ const messageToast = document.getElementById('messages')
+
+ const toast2 = new bootstrap.Toast(messageToast)
+ toast2.show();
+ <?php endif; ?>
+
+ //Tablefilter
  let tfConfig = {
  paging: {
  results_per_page: ['Resultados: ', [10, 25, 50, 100]]

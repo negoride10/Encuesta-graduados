@@ -1,5 +1,7 @@
 <?php
+session_start();
 include './vendor/autoload.php';
+require 'Helpers/Sessions.php';
 
 use Ospina\EasySQL\EasySQL;
 
@@ -11,7 +13,8 @@ $easySQL->table('form_answers')->where('ID', '=', $request->id)->update(
         'is_confirmed' => 0
     ]
 );
-header("Location: /pending.php");
+flashSession('Se ha rechazado el registro exitosamente');
+header("Location: pending.php");
 die();
 
 function parseRequest()

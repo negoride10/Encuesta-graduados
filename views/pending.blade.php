@@ -17,9 +17,22 @@
         </style>
     @endslot
 
+    @if(isset($message))
+        <div class="toast align-items-center text-bg-danger border-0 position-fixed top-0 end-0 m-2" role="alert"
+             aria-live="assertive" aria-atomic="true" id="messages">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{$message}}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Cerrar"></button>
+            </div>
+        </div>
+    @endif
+
     @if(isset($error))
         <div class="toast align-items-center text-bg-danger border-0 position-fixed top-0 end-0 m-2" role="alert"
-             aria-live="assertive" aria-atomic="true" id="liveToast">
+             aria-live="assertive" aria-atomic="true" id="errors">
             <div class="d-flex">
                 <div class="toast-body">
                     {{$error}}
@@ -122,7 +135,7 @@
                             <input type="text" name="id" value="{{$answer['id']}}" hidden>
                             <input type="text" name="identification_number" hidden
                                    value="{{$answer['identification_number']}}">
-                            <button type="submit" class="btn btn-primary">Volver a sincronizar</button>
+                            <button type="submit" class="btn btn-primary d-block mb-2">Sincronizar</button>
                         </form>
 
                         <form action="/deny.php" method="POST" class="d-inline"
@@ -139,6 +152,24 @@
     @slot('scripts')
         <script>
             window.addEventListener('load', function () {
+                //Toast
+                @if(isset($error))
+
+                const errorToast = document.getElementById('errors')
+
+                const toast1 = new bootstrap.Toast(errorToast)
+                toast1.show();
+                @endif
+
+                @if(isset($message))
+
+                const messageToast = document.getElementById('messages')
+
+                const toast2 = new bootstrap.Toast(messageToast)
+                toast2.show();
+                @endif
+
+                //Tablefilter
                 let tfConfig = {
                     paging: {
                         results_per_page: ['Resultados: ', [10, 25, 50, 100]]

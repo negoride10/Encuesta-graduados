@@ -1,5 +1,7 @@
 <?php
+session_start();
 require 'vendor/autoload.php';
+require 'Helpers/Sessions.php';
 
 use Ospina\EasySQL\EasySQL;
 
@@ -13,16 +15,20 @@ try {
 }
 
 //Actualizar DataBase
-$mysql = new EasySQL('encuesta_graduados','local');
+$mysql = new EasySQL('encuesta_graduados', 'local');
 $result = $mysql->table('form_answers')
     ->where('id', '=', $requestData->id)
     ->update([
-        'is_graduated'=>$isGraduated
+        'is_graduated' => $isGraduated
     ]);
 
 //Mostrar en front el usuario actualizado y removido de "No encontrado"
+//Write notification
 
+flashSession($isGraduated === 1 ? 'El usuario ha sido migrado exitosamente' : 'El usuario aún no se encuentra migrado en el SIGA');
 
+header('Location: pending.php');
+die();
 //---------------- Functions-------------------
 
 function getDataFromPostRequest(): object
@@ -48,6 +54,9 @@ function getDataFromPostRequest(): object
 //Function for verify
 function verifyIfIsGraduated(string $identification_number): int
 {
+    $response = random_int(0, 1);
+    return $response;
+
     $endpoint = 'https://academia.unibague.edu.co/atlante/graduados_siga.php';
     $curl = new \Ospina\CurlCobain\CurlCobain($endpoint);
     $curl->setQueryParamsAsArray([
