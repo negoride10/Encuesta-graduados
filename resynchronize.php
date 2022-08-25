@@ -1,6 +1,7 @@
 <?php
 require 'vendor/autoload.php';
-require 'Helpers/OspinaMysqlHelper.php';
+
+use Ospina\EasySQL\EasySQL;
 
 //Leer y parsear la petición del front (ID)
 $requestData = getDataFromPostRequest();
@@ -8,35 +9,40 @@ $requestData = getDataFromPostRequest();
 //Crear un método para volver a sincronizar - Función (verifyIfIsGraduated) arroja 0 o 1
 try {
     $isGraduated = verifyIfIsGraduated($requestData->identificationNumber);
-    } catch (JsonException $e) {
+} catch (JsonException $e) {
 }
 
 //Actualizar DataBase
-
-
+$mysql = new EasySQL('encuesta_graduados','local');
+$result = $mysql->table('form_answers')
+    ->where('id', '=', $requestData->id)
+    ->update([
+        'is_graduated'=>$isGraduated
+    ]);
 
 //Mostrar en front el usuario actualizado y removido de "No encontrado"
 
 
 //---------------- Functions-------------------
 
-function getDataFromPostRequest():object{
+function getDataFromPostRequest(): object
+{
 
-    if (!isset($_POST['id'])){
-         echo 'Debe proporcionar un ID válido';
+    if (!isset($_POST['id'])) {
+        echo 'Debe proporcionar un ID válido';
         die();
     }
-    if (!isset($_POST['identification_number'])){
+    if (!isset($_POST['identification_number'])) {
         echo 'Debe proporcionar una cédula válida';
         die();
     }
     $id = $_POST['id'];
     $identificationNumber = $_POST['identification_number'];
 
-     return (object)[
-        'id'=> $id,
-        'identificationNumber'=> $identificationNumber,
-        ];
+    return (object)[
+        'id' => $id,
+        'identificationNumber' => $identificationNumber,
+    ];
 }
 
 //Function for verify
@@ -58,3 +64,4 @@ function dd($var)
     echo json_encode($var);
     die();
 }
+

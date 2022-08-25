@@ -56,7 +56,7 @@
             <tbody>
             @foreach($graduatedAnswers as $key=>$answer)
                 <tr>
-                    <th scope="row">{{$answer['ID']}}</th>
+                    <th scope="row">{{$answer['id']}}</th>
                     <td>{{$answer['identification_number']}}</td>
                     <td>{{$answer['name']}} {{$answer['last_name']}}</td>
                     <td>{{$answer['email']}}</td>
@@ -71,7 +71,7 @@
                             <button type="button" class="btn btn-success d-block mb-2">Aprobar</button>
                             <form action="/deny.php" method="POST"
                                   onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro? Este será eliminado permanentemente de esta pantalla.')">
-                                <input type="text" name="id" value="{{$answer['ID']}}" hidden>
+                                <input type="text" name="id" value="{{$answer['id']}}" hidden>
                                 <button type="submit" class="btn btn-danger">Rechazar</button>
                             </form>
                         </div>
@@ -107,7 +107,7 @@
             <tbody>
             @foreach($notGraduatedAnswers as $key=>$answer)
                 <tr>
-                    <th scope="row">{{$answer['ID']}}</th>
+                    <th scope="row">{{$answer['id']}}</th>
                     <td>{{$answer['identification_number']}}</td>
                     <td>{{$answer['name']}} {{$answer['last_name']}}</td>
                     <td>{{$answer['email']}}</td>
@@ -119,7 +119,7 @@
                     <td>{{$answer['created_at']}}</td>
                     <td>
                         <form action="/resynchronize.php" method="POST" class="d-inline">
-                            <input type="text" name="id" value="{{$answer['ID']}}" hidden>
+                            <input type="text" name="id" value="{{$answer['id']}}" hidden>
                             <input type="text" name="identification_number" hidden
                                    value="{{$answer['identification_number']}}">
                             <button type="submit" class="btn btn-primary">Volver a sincronizar</button>
@@ -127,7 +127,7 @@
 
                         <form action="/deny.php" method="POST" class="d-inline"
                               onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro? Este será eliminado permanentemente de esta pantalla.')">
-                            <input type="text" name="id" value="{{$answer['ID']}}" hidden>
+                            <input type="text" name="id" value="{{$answer['id']}}" hidden>
                             <button type="submit" class="btn btn-danger">Rechazar</button>
                         </form>
                     </td>
