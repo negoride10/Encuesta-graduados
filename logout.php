@@ -1,8 +1,5 @@
 <?php
-echo 'hola';
-die();
 session_start();
-session_destroy();
+$_SESSION['auth'] = false;
+$_SESSION['username'] = '';
 header("Location: index.php");
-?>
-

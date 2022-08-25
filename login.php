@@ -1,9 +1,14 @@
 <?php
 session_start();
 require 'vendor/autoload.php';
+require 'Helpers/Auth.php';
 
 use eftec\bladeone\BladeOne;
 use Ospina\EasyLDAP\EasyLDAP;
+
+if (auth()) {
+    header("Location: /pending.php");
+}
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':

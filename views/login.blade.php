@@ -2,6 +2,8 @@
     @slot('title')
         Iniciar sesión
     @endslot
+    @slot('header')
+    @endslot
 
     @if(isset($error))
         <div class="toast align-items-center text-bg-danger border-0 position-fixed top-0 end-0 m-2" role="alert"
