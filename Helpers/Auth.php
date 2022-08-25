@@ -11,7 +11,11 @@ function verifyIsAuthenticated()
 
 function auth(): bool
 {
-    return $_SESSION['auth'] === true;
+    if (isset($_SESSION['auth'])) {
+        return $_SESSION['auth'] === true;
+    }
+
+    return false;
 }
 
 function user(): ?string
