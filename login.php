@@ -5,6 +5,7 @@ require 'Helpers/Auth.php';
 
 use eftec\bladeone\BladeOne;
 use Ospina\EasyLDAP\EasyLDAP;
+use Ospina\EasySQL\EasySQL;
 
 if (auth()) {
     header("Location: /pending.php");
@@ -30,6 +31,26 @@ function handleGetRequest()
  * @return void
  * @throws JsonException
  */
+
+function isValidUser(string $userName): bool
+{
+    $mysql = new EasySQL('encuesta_graduados', 'local');
+    try{
+        $result = $mysql->table('users')->select(['id'])
+            ->where('user_name', '=', $userName)
+            ->get();
+    } catch (RuntimeException $e){
+        return false;
+    }
+    if ($result === null) {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * @throws JsonException
+ */
 function handlePostRequest()
 {
     try {
@@ -39,6 +60,11 @@ function handlePostRequest()
         $error = $e->getMessage();
         parseLoginView($error);
     }
+    $isValid = isValidUser($request->username);
+        if($isValid !== true){
+            $error = 'No estás autorizado para usar la plataforma';
+            parseLoginView($error);
+        }
 
     $auth = authenticate($request->username, $request->password);
     //Invalid credentials
