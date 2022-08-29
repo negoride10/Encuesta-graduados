@@ -19,7 +19,7 @@
     @endif
     <form class="d-flex justify-content-center h-100" method="POST" action="/login.php">
         <div class="d-flex justify-content-center d-flex flex-column">
-            <div>
+            <div class="mb-2">
                 <label for="exampleInputEmail1">Correo Unibagué</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="Usuario"
                        placeholder="Usuario Unibagué" name="username">

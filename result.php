@@ -17,7 +17,6 @@ $queryBuilder = SmartQueryBuilder::table('form_answers');
 $query = $queryBuilder->select(['*'])
     ->where('id', '=', $id);
 $finalQuery = $query->getQuery();
-
 //Execute query
 $result = $mysql->makeQuery($finalQuery);
 $finalResult = $result->fetch_all(MYSQLI_ASSOC);
