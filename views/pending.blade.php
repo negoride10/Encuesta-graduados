@@ -1,6 +1,6 @@
 @component('templates.main')
     @slot('title')
-        Encuestas pendientes de aprobación
+        Registros listos para migrar
     @endslot
 
     @slot('header')
@@ -43,12 +43,10 @@
         </div>
     @endif
     <h1 class="text-center mb-4">
-        Encuestas pendientes de aprobación
+        Registros listos para migrar
     </h1>
 
-    <h2 class="mb-4">
-        Se encontraron como egresados en SIGA.
-    </h2>
+
     <div class="table-responsive">
         <table class="table table-striped table-hover" id="table1">
             <thead>
@@ -97,58 +95,6 @@
 
     </div>
 
-    <h2 class="mt-4">
-        No se encontraron como egresados en SIGA.
-    </h2>
-    <div class="table-responsive">
-        <table class="table table-striped table-hover" id="table2">
-            <thead>
-            <tr>
-                <th scope="col">#ID</th>
-                <th scope="col">Cédula</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Correo electrónico</th>
-                <th scope="col">Teléfono</th>
-                <th scope="col">Teléfono alterno</th>
-                <th scope="col">País</th>
-                <th scope="col">Ciudad</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Fecha de recepción</th>
-                <th scope="col">Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($notGraduatedAnswers as $key=>$answer)
-                <tr>
-                    <th scope="row">{{$answer['id']}}</th>
-                    <td>{{$answer['identification_number']}}</td>
-                    <td>{{$answer['name']}} {{$answer['last_name']}}</td>
-                    <td>{{$answer['email']}}</td>
-                    <td>{{$answer['mobile_phone']}}</td>
-                    <td>{{$answer['alternative_mobile_phone']}}</td>
-                    <td>{{$answer['country']}}</td>
-                    <td>{{$answer['city']}}</td>
-                    <td>{{$answer['address']}}</td>
-                    <td>{{$answer['created_at']}}</td>
-                    <td>
-                        <form action="/resynchronize.php" method="POST" class="d-inline">
-                            <input type="text" name="id" value="{{$answer['id']}}" hidden>
-                            <input type="text" name="identification_number" hidden
-                                   value="{{$answer['identification_number']}}">
-                            <button type="submit" class="btn btn-primary d-block mb-2">Sincronizar</button>
-                        </form>
-
-                        <form action="/deny.php" method="POST" class="d-inline"
-                              onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro? Este será eliminado permanentemente de esta pantalla.')">
-                            <input type="text" name="id" value="{{$answer['id']}}" hidden>
-                            <button type="submit" class="btn btn-danger">Rechazar</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
     @slot('scripts')
         <script>
             window.addEventListener('load', function () {

@@ -16,12 +16,6 @@ $graduatedAnswers = $graduatedAnswersConnection->table('form_answers')->select([
     ->isNull('is_confirmed')
     ->get();
 
-//create db object
-$notGraduatedAnswersConnection = new EasySQL('encuesta_graduados', 'local');
-$notGraduatedAnswers = $notGraduatedAnswersConnection->table('form_answers')->select(['*'])
-    ->where('is_graduated', '=', 0)
-    ->isNull('is_confirmed')
-    ->get();
 
 $blade = new BladeOne();
 try {
@@ -33,9 +27,9 @@ try {
         //Limpiar variables antes de renderizar
         $_SESSION['message'] = '';
         $_SESSION['pending'] = false;
-        echo $blade->run("pending", compact('graduatedAnswers', 'notGraduatedAnswers', 'message'));
+        echo $blade->run("pending", compact('graduatedAnswers', 'message'));
     } else {
-        echo $blade->run("pending", compact('graduatedAnswers', 'notGraduatedAnswers'));
+        echo $blade->run("pending", compact('graduatedAnswers'));
     }
 
 } catch (Exception $e) {
