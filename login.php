@@ -8,7 +8,7 @@ use Ospina\EasyLDAP\EasyLDAP;
 use Ospina\EasySQL\EasySQL;
 
 if (auth()) {
-    header("Location: /pending.php");
+    redirectToDefaultRoute();
 }
 
 switch ($_SERVER['REQUEST_METHOD']) {
@@ -35,12 +35,12 @@ function handleGetRequest()
 function isValidUser(string $userName): bool
 {
     $mysql = new EasySQL('encuesta_graduados', 'local');
-    try{
+    try {
         $result = $mysql->table('users')->select(['id'])
             ->where('user_name', '=', $userName)
             ->get();
 
-    } catch (RuntimeException $e){
+    } catch (RuntimeException $e) {
         return false;
     }
     return count($result) !== 0;
@@ -59,10 +59,10 @@ function handlePostRequest()
         parseLoginView($error);
     }
     $isValid = isValidUser($request->username);
-        if($isValid !== true){
-            $error = 'No estás autorizado para usar la plataforma';
-            parseLoginView($error);
-        }
+    if ($isValid !== true) {
+        $error = 'No estás autorizado para usar la plataforma';
+        parseLoginView($error);
+    }
 
     $auth = authenticate($request->username, $request->password);
     //Invalid credentials
@@ -71,7 +71,7 @@ function handlePostRequest()
         parseLoginView($error);
     }
     setSessionObject($request->username);
-    header("Location: /pending.php");
+    redirectToDefaultRoute();
 }
 
 /**

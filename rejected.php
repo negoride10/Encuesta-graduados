@@ -9,33 +9,27 @@ use Ospina\EasySQL\EasySQL;
 //Check if is auth
 verifyIsAuthenticated();
 
-//create db object
-$graduatedAnswersConnection = new EasySQL('encuesta_graduados', 'local');
-$graduatedAnswers = $graduatedAnswersConnection->table('form_answers')->select(['*'])
-    ->where('is_graduated', '=', 1)
-    ->isNull('is_confirmed')
-    ->get();
 
 //create db object
 $notGraduatedAnswersConnection = new EasySQL('encuesta_graduados', 'local');
-$notGraduatedAnswers = $notGraduatedAnswersConnection->table('form_answers')->select(['*'])
-    ->where('is_graduated', '=', 0)
-    ->isNull('is_confirmed')
+$rejectedAnswers = $notGraduatedAnswersConnection->table('form_answers')->select(['*'])
+    ->where('is_confirmed', '=', 0)
+    ->where('is_deleted', '=', 0)
     ->get();
 
 $blade = new BladeOne();
 try {
-    $isrejected = $_SESSION['pending'] ?? false;
-    if ($isrejected) {
+    $isPending = $_SESSION['pending'] ?? false;
+    if ($isPending) {
         //Almacenar variable
         $message = $_SESSION['message'];
 
         //Limpiar variables antes de renderizar
         $_SESSION['message'] = '';
-        $_SESSION['rejected'] = false;
-        echo $blade->run("rejected", compact('graduatedAnswers', 'notGraduatedAnswers', 'message'));
+        $_SESSION['pending'] = false;
+        echo $blade->run("rejected", compact('rejectedAnswers', 'message'));
     } else {
-        echo $blade->run("rejected", compact('graduatedAnswers', 'notGraduatedAnswers'));
+        echo $blade->run("rejected", compact('rejectedAnswers'));
     }
 
 } catch (Exception $e) {

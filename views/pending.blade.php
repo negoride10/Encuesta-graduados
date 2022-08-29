@@ -1,6 +1,6 @@
 @component('templates.main')
     @slot('title')
-        Registros listos para migrar
+        Registros pendientes de sincronización
     @endslot
 
     @slot('header')
@@ -43,7 +43,7 @@
         </div>
     @endif
     <h1 class="text-center mb-4">
-        Registros listos para migrar
+        Registros pendientes de sincronización
     </h1>
 
 
@@ -81,7 +81,7 @@
                         <div>
                             <button type="button" class="btn btn-success d-block mb-2">Aprobar</button>
                             <form action="/deny.php" method="POST"
-                                  onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro? Este será eliminado permanentemente de esta pantalla.')">
+                                  onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro?')">
                                 <input type="text" name="id" value="{{$answer['id']}}" hidden>
                                 <button type="submit" class="btn btn-danger">Rechazar</button>
                             </form>

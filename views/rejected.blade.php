@@ -1,6 +1,6 @@
 @component('templates.main')
     @slot('title')
-        Encuestas pendientes de aprobación
+        Registros Rechazados
     @endslot
 
     @slot('header')
@@ -43,13 +43,11 @@
         </div>
     @endif
     <h1 class="text-center mb-4">
-        Encuestas rechazadas
+        Registros rechazados
     </h1>
-    <h2 class="mt-4">
-        No se encontraron como egresados en SIGA.
-    </h2>
+
     <div class="table-responsive">
-        <table class="table table-striped table-hover" id="table2">
+        <table class="table table-striped table-hover" id="table1">
             <thead>
             <tr>
                 <th scope="col">#ID</th>
@@ -66,7 +64,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($notGraduatedAnswers as $key=>$answer)
+            @foreach($rejectedAnswers as $key=>$answer)
                 <tr>
                     <th scope="row">{{$answer['id']}}</th>
                     <td>{{$answer['identification_number']}}</td>
@@ -79,14 +77,12 @@
                     <td>{{$answer['address']}}</td>
                     <td>{{$answer['created_at']}}</td>
                     <td>
-                        <form action="/resynchronize.php" method="POST" class="d-inline">
+                        <form action="/reactive.php" method="POST" class="d-inline">
                             <input type="text" name="id" value="{{$answer['id']}}" hidden>
-                            <input type="text" name="identification_number" hidden
-                                   value="{{$answer['identification_number']}}">
                             <button type="submit" class="btn btn-primary d-block mb-2">Reactivar</button>
                         </form>
 
-                        <form action="/deny.php" method="POST" class="d-inline"
+                        <form action="/delete.php" method="POST" class="d-inline"
                               onsubmit="return confirm('Este registro sera borrado')">
                             <input type="text" name="id" value="{{$answer['id']}}" hidden>
                             <button type="submit" class="btn btn-danger">Borrar</button>
@@ -148,8 +144,6 @@
                 const tf = new TableFilter(document.querySelector('#table1'), tfConfig);
                 tf.init();
 
-                const tf2 = new TableFilter(document.querySelector('#table2'), tfConfig);
-                tf2.init();
             })
         </script>
     @endslot

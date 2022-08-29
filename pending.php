@@ -12,10 +12,9 @@ verifyIsAuthenticated();
 //create db object
 $graduatedAnswersConnection = new EasySQL('encuesta_graduados', 'local');
 $graduatedAnswers = $graduatedAnswersConnection->table('form_answers')->select(['*'])
-    ->where('is_graduated', '=', 1)
-    ->isNull('is_confirmed')
+    ->where('is_graduated', '=', 0)
+    ->where('is_confirmed', '=', 1)
     ->get();
-
 
 $blade = new BladeOne();
 try {

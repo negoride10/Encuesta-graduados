@@ -2,7 +2,6 @@
 
 function verifyIsAuthenticated()
 {
-    $redirectUri = '/pending.php';
     if (!auth()) {
         header("Location: /login.php");
         die();
@@ -28,7 +27,7 @@ function user(): ?string
 
 function redirectToDefaultRoute()
 {
-    $redirectUri = '/pending.php';
+    $redirectUri = '/ready.php';
     header("Location: $redirectUri");
     die();
 }
