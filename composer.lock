@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "eftec/bladeone",
-            "version": "4.5.5",
+            "version": "4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EFTEC/BladeOne.git",
-                "reference": "3d83f5d527a5582f9937ad648705ec3223f39dba"
+                "reference": "f13280910e65bcbc6c644eb5d3bfc085c269c7c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EFTEC/BladeOne/zipball/3d83f5d527a5582f9937ad648705ec3223f39dba",
-                "reference": "3d83f5d527a5582f9937ad648705ec3223f39dba",
+                "url": "https://api.github.com/repos/EFTEC/BladeOne/zipball/f13280910e65bcbc6c644eb5d3bfc085c269c7c4",
+                "reference": "f13280910e65bcbc6c644eb5d3bfc085c269c7c4",
                 "shasum": ""
             },
             "require": {
@@ -58,9 +58,9 @@
             ],
             "support": {
                 "issues": "https://github.com/EFTEC/BladeOne/issues",
-                "source": "https://github.com/EFTEC/BladeOne/tree/4.5.5"
+                "source": "https://github.com/EFTEC/BladeOne/tree/4.6"
             },
-            "time": "2022-07-16T14:05:23+00:00"
+            "time": "2022-08-26T21:45:02+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -238,16 +238,16 @@
         },
         {
             "name": "ospina/smart-query-builder",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JSebastianOspina/Smart-Query-Builder.git",
-                "reference": "258a43ab85a79acf2354345fc68034d5fc501a66"
+                "reference": "6424fdc28999acf83623bd147654bcd8c3116fa2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JSebastianOspina/Smart-Query-Builder/zipball/258a43ab85a79acf2354345fc68034d5fc501a66",
-                "reference": "258a43ab85a79acf2354345fc68034d5fc501a66",
+                "url": "https://api.github.com/repos/JSebastianOspina/Smart-Query-Builder/zipball/6424fdc28999acf83623bd147654bcd8c3116fa2",
+                "reference": "6424fdc28999acf83623bd147654bcd8c3116fa2",
                 "shasum": ""
             },
             "type": "library",
@@ -266,9 +266,9 @@
             "description": "Easy Query Builder for php",
             "support": {
                 "issues": "https://github.com/JSebastianOspina/Smart-Query-Builder/issues",
-                "source": "https://github.com/JSebastianOspina/Smart-Query-Builder/tree/1.0.3"
+                "source": "https://github.com/JSebastianOspina/Smart-Query-Builder/tree/1.0.4"
             },
-            "time": "2022-08-23T22:06:22+00:00"
+            "time": "2022-08-29T15:56:10+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -685,5 +685,5 @@
         "ext-mysqli": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }

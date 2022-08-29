@@ -39,13 +39,11 @@ function isValidUser(string $userName): bool
         $result = $mysql->table('users')->select(['id'])
             ->where('user_name', '=', $userName)
             ->get();
+
     } catch (RuntimeException $e){
         return false;
     }
-    if ($result === null) {
-        return false;
-    }
-    return true;
+    return count($result) !== 0;
 }
 
 /**
@@ -85,7 +83,7 @@ function handlePostRequest()
 function authenticate($username, $password): bool
 {
     $easyLDAP = new EasyLDAP(false);
-    $role = 0; //Functionary
+    $role = 1; //Functionary
     try {
         $easyLDAP->authenticate($username, $password, $role);
         return true;
