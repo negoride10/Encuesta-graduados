@@ -79,7 +79,7 @@
                     <td>{{$answer['created_at']}}</td>
                     <td class="align-middle">
                         <div>
-                            <form action="/app/controllers/resynchronize.php" method="POST"
+                            <form action="/app/controllers/approbe.php" method="POST"
                                   onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro?')">
                                 <input type="text" name="id" value="{{$answer['id']}}" hidden>
                                 <input type="text" name="identification_number" value="{{$answer['identification_number']}}" hidden>
