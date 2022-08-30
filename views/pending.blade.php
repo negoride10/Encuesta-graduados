@@ -79,8 +79,13 @@
                     <td>{{$answer['created_at']}}</td>
                     <td class="align-middle">
                         <div>
-                            <button type="button" class="btn btn-success d-block mb-2">Aprobar</button>
-                            <form action="/deny.php" method="POST"
+                            <form action="/app/controllers/resynchronize.php" method="POST"
+                                  onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro?')">
+                                <input type="text" name="id" value="{{$answer['id']}}" hidden>
+                                <input type="text" name="identification_number" value="{{$answer['identification_number']}}" hidden>
+                                <button type="submit" class="btn btn-primary d-block mb-2">Sincronizar</button>
+                            </form>
+                            <form action="/app/controllers/deny.php" method="POST"
                                   onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro?')">
                                 <input type="text" name="id" value="{{$answer['id']}}" hidden>
                                 <button type="submit" class="btn btn-danger">Rechazar</button>
@@ -145,9 +150,6 @@
 
                 const tf = new TableFilter(document.querySelector('#table1'), tfConfig);
                 tf.init();
-
-                const tf2 = new TableFilter(document.querySelector('#table2'), tfConfig);
-                tf2.init();
             })
         </script>
     @endslot

@@ -13,8 +13,8 @@ verifyIsAuthenticated();
 //create db object
 $notGraduatedAnswersConnection = new EasySQL('encuesta_graduados', 'local');
 $rejectedAnswers = $notGraduatedAnswersConnection->table('form_answers')->select(['*'])
-    ->where('is_confirmed', '=', 0)
-    ->where('is_deleted', '=', 0)
+    ->where('is_denied','=',1)
+    ->where('is_deleted','=',0)
     ->get();
 
 $blade = new BladeOne();

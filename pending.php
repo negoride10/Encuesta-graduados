@@ -13,7 +13,9 @@ verifyIsAuthenticated();
 $graduatedAnswersConnection = new EasySQL('encuesta_graduados', 'local');
 $graduatedAnswers = $graduatedAnswersConnection->table('form_answers')->select(['*'])
     ->where('is_graduated', '=', 0)
-    ->where('is_confirmed', '=', 1)
+    ->where('is_migrated', '=', 0)
+    ->where('is_denied','=',0)
+    ->where('is_deleted','=',0)
     ->get();
 
 $blade = new BladeOne();

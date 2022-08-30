@@ -78,7 +78,7 @@
                     <td>{{$answer['created_at']}}</td>
                     <td class="align-middle">
                         <div>
-                            <form action="/undelete.php" method="POST"
+                            <form action="/app/controllers/undelete.php" method="POST"
                                   onsubmit="return confirm('¿Estás seguro que deseas reactivar este registro?')">
                                 <input type="text" name="id" value="{{$answer['id']}}" hidden>
                                 <button type="submit" class="btn btn-success">Reactivar</button>

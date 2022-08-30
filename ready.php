@@ -13,8 +13,9 @@ verifyIsAuthenticated();
 $graduatedAnswersConnection = new EasySQL('encuesta_graduados', 'local');
 $graduatedAnswers = $graduatedAnswersConnection->table('form_answers')->select(['*'])
     ->where('is_graduated', '=', 1)
+    ->where('is_migrated', '=',0)
+    ->where('is_denied', '=',0)
     ->where('is_deleted', '=',0)
-    ->isNull('is_confirmed')
     ->get();
 
 
@@ -28,9 +29,9 @@ try {
         //Limpiar variables antes de renderizar
         $_SESSION['message'] = '';
         $_SESSION['pending'] = false;
-        echo $blade->run("pending", compact('graduatedAnswers', 'message'));
+        echo $blade->run("ready", compact('graduatedAnswers', 'message'));
     } else {
-        echo $blade->run("pending", compact('graduatedAnswers'));
+        echo $blade->run("ready", compact('graduatedAnswers'));
     }
 
 } catch (Exception $e) {

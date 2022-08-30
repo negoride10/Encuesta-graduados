@@ -79,8 +79,13 @@
                     <td>{{$answer['created_at']}}</td>
                     <td class="align-middle">
                         <div>
-                            <button type="button" class="btn btn-success d-block mb-2">Aprobar</button>
-                            <form action="/deny.php" method="POST"
+                            <form action="/app/controllers/deny.php" method="POST"
+                                  onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro? Este será eliminado permanentemente de esta pantalla.')">
+                                <input type="text" name="id" value="{{$answer['id']}}" hidden>
+                                <button type="submit" class="btn btn-success d-block mb-2">Aprobar</button>
+                            </form>
+
+                            <form action="/app/controllers/deny.php" method="POST"
                                   onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro? Este será eliminado permanentemente de esta pantalla.')">
                                 <input type="text" name="id" value="{{$answer['id']}}" hidden>
                                 <button type="submit" class="btn btn-danger">Rechazar</button>

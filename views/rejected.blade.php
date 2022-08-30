@@ -77,12 +77,12 @@
                     <td>{{$answer['address']}}</td>
                     <td>{{$answer['created_at']}}</td>
                     <td>
-                        <form action="/reactive.php" method="POST" class="d-inline">
+                        <form action="/app/controllers/reactive.php" method="POST" class="d-inline">
                             <input type="text" name="id" value="{{$answer['id']}}" hidden>
                             <button type="submit" class="btn btn-primary d-block mb-2">Reactivar</button>
                         </form>
 
-                        <form action="/delete.php" method="POST" class="d-inline"
+                        <form action="/app/controllers/delete.php" method="POST" class="d-inline"
                               onsubmit="return confirm('Este registro sera borrado')">
                             <input type="text" name="id" value="{{$answer['id']}}" hidden>
                             <button type="submit" class="btn btn-danger">Borrar</button>

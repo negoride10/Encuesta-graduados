@@ -21,25 +21,24 @@
                 <span class="h3 ms-2">Encuesta de egresados</span>
             </a>
 
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/ready.php">Listos para migrar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/pending.php">Pendientes de sincronización</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/rejected.php">Rechazados</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/deleted.php">Borrados</a>
-                </li>
-            </ul>
-
             @if(auth())
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ready.php">Listos para migrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pending.php">Pendientes de sincronización</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/rejected.php">Rechazados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/deleted.php">Borrados</a>
+                    </li>
+                </ul>
                 <div class="d-flex align-items-center">
-                    <form action="/logout.php" method="POST">
+                    <form action="/app/controllers/logout.php" method="POST">
                         <button type="submit" class="btn btn-dark">Cerrar sesión</button>
                     </form>
                 </div>
