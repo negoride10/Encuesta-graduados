@@ -7,11 +7,11 @@
         <script src="/tablefilter/tablefilter.js"></script>
         {{--DISABLING FILTER ON LAST COLUMN--}}
         <style>
-            #flt10_table1 {
+            #flt11_table1 {
                 display: none;
             }
 
-            #flt10_table2 {
+            #flt11_table2 {
                 display: none;
             }
         </style>
@@ -52,7 +52,8 @@
             <tr>
                 <th scope="col">#ID</th>
                 <th scope="col">Cédula</th>
-                <th scope="col">Nombre</th>
+                 <th scope="col">Nombre</th>
+<th scope="col">Apellido</th>
                 <th scope="col">Correo electrónico</th>
                 <th scope="col">Teléfono</th>
                 <th scope="col">Teléfono alterno</th>
@@ -68,7 +69,8 @@
                 <tr>
                     <th scope="row">{{$answer['id']}}</th>
                     <td>{{$answer['identification_number']}}</td>
-                    <td>{{$answer['name']}} {{$answer['last_name']}}</td>
+                      <td>{{$answer['name']}}</td>
+   <td>{{$answer['last_name']}}</td>
                     <td>{{$answer['email']}}</td>
                     <td>{{$answer['mobile_phone']}}</td>
                     <td>{{$answer['alternative_mobile_phone']}}</td>

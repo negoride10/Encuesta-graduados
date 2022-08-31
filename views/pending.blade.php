@@ -7,11 +7,11 @@
         <script src="/tablefilter/tablefilter.js"></script>
         {{--DISABLING FILTER ON LAST COLUMN--}}
         <style>
-            #flt10_table1 {
+            #flt11_table1 {
                 display: none;
             }
 
-            #flt10_table2 {
+            #flt11_table2 {
                 display: none;
             }
         </style>
@@ -54,6 +54,7 @@
                 <th scope="col">#ID</th>
                 <th scope="col">Cédula</th>
                 <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
                 <th scope="col">Correo electrónico</th>
                 <th scope="col">Teléfono</th>
                 <th scope="col">Teléfono alterno</th>
@@ -69,7 +70,8 @@
                 <tr>
                     <th scope="row">{{$answer['id']}}</th>
                     <td>{{$answer['identification_number']}}</td>
-                    <td>{{$answer['name']}} {{$answer['last_name']}}</td>
+                    <td>{{$answer['name']}}</td>
+                    <td>{{$answer['last_name']}}</td>
                     <td>{{$answer['email']}}</td>
                     <td>{{$answer['mobile_phone']}}</td>
                     <td>{{$answer['alternative_mobile_phone']}}</td>
@@ -79,10 +81,10 @@
                     <td>{{$answer['created_at']}}</td>
                     <td class="align-middle">
                         <div>
-                            <form action="/app/controllers/approbe.php" method="POST"
-                                  onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro?')">
+                            <form action="/app/controllers/resynchronize.php" method="POST">
                                 <input type="text" name="id" value="{{$answer['id']}}" hidden>
-                                <input type="text" name="identification_number" value="{{$answer['identification_number']}}" hidden>
+                                <input type="text" name="identification_number"
+                                       value="{{$answer['identification_number']}}" hidden>
                                 <button type="submit" class="btn btn-primary d-block mb-2">Sincronizar</button>
                             </form>
                             <form action="/app/controllers/deny.php" method="POST"

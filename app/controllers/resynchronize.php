@@ -26,10 +26,13 @@ $result = $mysql->table('form_answers')
 
 flashSession($isGraduated === 1 ? 'El usuario ha sido migrado exitosamente' : 'El usuario aún no se encuentra migrado en el SIGA');
 
-header('Location: pending.php');
+header("Location: " . $_SERVER['HTTP_REFERER']);
 die();
 //---------------- Functions-------------------
 
+/**
+ * @return object
+ */
 function getDataFromPostRequest(): object
 {
 
@@ -50,12 +53,14 @@ function getDataFromPostRequest(): object
     ];
 }
 
-//Function for verify
+
+/**
+ * @param string $identification_number
+ * @return int
+ * @throws JsonException
+ */
 function verifyIfIsGraduated(string $identification_number): int
 {
-    $response = random_int(0, 1);
-    return $response;
-
     $endpoint = 'https://academia.unibague.edu.co/atlante/graduados_siga.php';
     $curl = new \Ospina\CurlCobain\CurlCobain($endpoint);
     $curl->setQueryParamsAsArray([
@@ -66,6 +71,10 @@ function verifyIfIsGraduated(string $identification_number): int
     return json_decode($response, true, 512, JSON_THROW_ON_ERROR)['data'];
 }
 
+/**
+ * @param $var
+ * @return void
+ */
 function dd($var)
 {
     header('Content-Type: application/json;charset=utf-8');

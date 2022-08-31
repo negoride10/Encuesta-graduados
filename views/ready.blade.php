@@ -7,14 +7,22 @@
         <script src="/tablefilter/tablefilter.js"></script>
         {{--DISABLING FILTER ON LAST COLUMN--}}
         <style>
-            #flt10_table1 {
+            #flt11_table1 {
                 display: none;
             }
 
-            #flt10_table2 {
+            #flt11_table2 {
                 display: none;
             }
+
+            td {
+                height: 50px;
+                width: 50px;
+                text-align: center;
+                vertical-align: middle;
+            }
         </style>
+
     @endslot
 
     @if(isset($message))
@@ -54,11 +62,11 @@
                 <th scope="col">#ID</th>
                 <th scope="col">Cédula</th>
                 <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
                 <th scope="col">Correo electrónico</th>
                 <th scope="col">Teléfono</th>
                 <th scope="col">Teléfono alterno</th>
-                <th scope="col">País</th>
-                <th scope="col">Ciudad</th>
+                <th scope="col">Ciudad residencia</th>
                 <th scope="col">Dirección</th>
                 <th scope="col">Fecha de recepción</th>
                 <th scope="col">Acciones</th>
@@ -68,19 +76,91 @@
             @foreach($graduatedAnswers as $key=>$answer)
                 <tr>
                     <th scope="row">{{$answer['id']}}</th>
-                    <td>{{$answer['identification_number']}}</td>
-                    <td>{{$answer['name']}} {{$answer['last_name']}}</td>
-                    <td>{{$answer['email']}}</td>
-                    <td>{{$answer['mobile_phone']}}</td>
-                    <td>{{$answer['alternative_mobile_phone']}}</td>
-                    <td>{{$answer['country']}}</td>
-                    <td>{{$answer['city']}}</td>
-                    <td>{{$answer['address']}}</td>
+                    <td>
+                        <p>
+                            {{$answer['identification_number']}}
+                        </p>
+                        <hr>
+                        <p>
+                            {{$answer['official_answers']['Numero de identificacion']}}
+                        </p>
+                        <hr>
+                    </td>
+                    <td>
+                        <p>
+                            {{$answer['name']}}
+                        </p>
+                        <hr>
+                        <p>
+                            {{$answer['official_answers']['Nombres']}}
+                        </p>
+                        <hr>
+                    </td>
+                    <td>
+                        <p>
+                            {{$answer['last_name']}}
+                        </p>
+                        <hr>
+                        <p>
+                            {{$answer['official_answers']['Apellidos']}}
+                        </p>
+                        <hr>
+                    </td>
+                    <td>
+                        <p>
+                            {{$answer['email']}}
+                        </p>
+                        <hr>
+                        <p>
+                            {{$answer['official_answers']['Correo']}}
+                        </p>
+                        <hr>
+                    </td>
+                    <td>
+                        <p>
+                            {{$answer['mobile_phone']}}
+                        </p>
+                        <hr>
+                        <p>
+                            {{$answer['official_answers']['Telefono de contacto']}}
+                        </p>
+                        <hr>
+                    </td>
+                    <td>
+                        <p>
+                            {{$answer['alternative_mobile_phone']}}
+                        </p>
+                        <hr>
+                        <p>
+                            {{$answer['official_answers']['Telefono alterno']}}
+                        </p>
+                        <hr>
+                    </td>
+                    <td>
+                        <p>
+                            {{$answer['city']}}
+                        </p>
+                        <hr>
+                        <p>
+                            {{$answer['official_answers']['Ciudad residencia']}}
+                        </p>
+                        <hr>
+                    </td>
+                    <td>
+                        <p>
+                            {{$answer['address']}}
+                        </p>
+                        <hr>
+                        <p>
+                            {{$answer['official_answers']['Direccion de correspondencia']}}
+                        </p>
+                        <hr>
+                    </td>
                     <td>{{$answer['created_at']}}</td>
                     <td class="align-middle">
                         <div>
-                            <form action="/app/controllers/deny.php" method="POST"
-                                  onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro? Este será eliminado permanentemente de esta pantalla.')">
+                            <form action="/app/controllers/approbe.php" method="POST"
+                                  onsubmit="return confirm('¿Estás seguro que deseas migrar a SIGA?')">
                                 <input type="text" name="id" value="{{$answer['id']}}" hidden>
                                 <button type="submit" class="btn btn-success d-block mb-2">Aprobar</button>
                             </form>
@@ -151,8 +231,6 @@
                 const tf = new TableFilter(document.querySelector('#table1'), tfConfig);
                 tf.init();
 
-                const tf2 = new TableFilter(document.querySelector('#table2'), tfConfig);
-                tf2.init();
             })
         </script>
     @endslot

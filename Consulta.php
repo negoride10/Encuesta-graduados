@@ -1,5 +1,9 @@
 <?php
+
 require 'vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf1ijgwz_RiQDP9zzI6YeM6n_Hl2Gnad03wu_mimLZ1PxPn-A/viewform';
 
 //Get HTTP params
@@ -51,7 +55,8 @@ function searchUser(array $request)
         'consulta' => 'Consultar',
         'documento' => $request['identification_number'],
         'dia' => $request['day'],
-        'mes' => $request['month']
+        'mes' => $request['month'],
+        'token' => md5($request['identification_number']) . getenv('SECURE_TOKEN')
     ]);
     $response = $curl->makeRequest();
 
