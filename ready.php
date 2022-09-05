@@ -19,7 +19,7 @@ $graduatedAnswers = $graduatedAnswersConnection->table('form_answers')->select([
     ->where('is_migrated', '=', 0)
     ->where('is_denied', '=', 0)
     ->where('is_deleted', '=', 0)
-    ->limit(20)
+    ->limit($_GET['limit'] ?? 10)
     ->get();
 
 //Get data from siga
