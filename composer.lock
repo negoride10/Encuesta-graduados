@@ -200,16 +200,16 @@
         },
         {
             "name": "ospina/easy-sql",
-            "version": "1.0.1",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JSebastianOspina/Easy-SQL.git",
-                "reference": "08249ed24a9aa73a7c913078ca592159a410695c"
+                "reference": "e88c44c4f52b5b87dee86e0b43f98702301e8c34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JSebastianOspina/Easy-SQL/zipball/08249ed24a9aa73a7c913078ca592159a410695c",
-                "reference": "08249ed24a9aa73a7c913078ca592159a410695c",
+                "url": "https://api.github.com/repos/JSebastianOspina/Easy-SQL/zipball/e88c44c4f52b5b87dee86e0b43f98702301e8c34",
+                "reference": "e88c44c4f52b5b87dee86e0b43f98702301e8c34",
                 "shasum": ""
             },
             "require": {
@@ -232,9 +232,9 @@
             "description": "Managing your Mysql DB with PHP never was that easy",
             "support": {
                 "issues": "https://github.com/JSebastianOspina/Easy-SQL/issues",
-                "source": "https://github.com/JSebastianOspina/Easy-SQL/tree/1.0.1"
+                "source": "https://github.com/JSebastianOspina/Easy-SQL/tree/1.0.3"
             },
-            "time": "2022-08-23T22:09:07+00:00"
+            "time": "2022-09-05T22:54:34+00:00"
         },
         {
             "name": "ospina/smart-query-builder",
