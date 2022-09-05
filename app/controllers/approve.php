@@ -8,10 +8,12 @@ $request = parseRequest();
 
 $response = updateUserData($request->identification_number, $request);
 
+
 $easySQL = new EasySQL('encuesta_graduados', 'local');
 $easySQL->table('form_answers')->where('ID', '=', $request->id)->update(
     [
-        'is_migrated' => 1
+        'is_migrated' => 1,
+        'migrated_by' => user()->id
     ]
 );
 flashSession('Se ha migrado el registro a siga exitosamente');

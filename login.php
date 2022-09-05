@@ -34,16 +34,22 @@ function handleGetRequest()
 
 function isValidUser(string $userName): bool
 {
+    $user = getUserId($userName);
+    return count($user) !== 0;
+}
+
+function getUserId(string $userName)
+{
     $mysql = new EasySQL('encuesta_graduados', 'local');
     try {
         $result = $mysql->table('users')->select(['id'])
-            ->where('user_name', '=', $userName)
+            ->where('username', '=', $userName)
             ->get();
 
     } catch (RuntimeException $e) {
         return false;
     }
-    return count($result) !== 0;
+    return $result[0]['id'];
 }
 
 /**
@@ -58,6 +64,7 @@ function handlePostRequest()
         $error = $e->getMessage();
         parseLoginView($error);
     }
+
     $isValid = isValidUser($request->username);
     if ($isValid !== true) {
         $error = 'No estás autorizado para usar la plataforma';
@@ -70,7 +77,8 @@ function handlePostRequest()
         $error = 'Los datos que ingresaste no coinciden con nuestro registros';
         parseLoginView($error);
     }
-    setSessionObject($request->username);
+
+    setSessionObject($request->username, getUserId($request->username));
     redirectToDefaultRoute();
 }
 
@@ -107,10 +115,11 @@ function parseLoginView($error = null)
     die();
 }
 
-function setSessionObject($username)
+function setSessionObject($username, $id)
 {
     $_SESSION['auth'] = true;
     $_SESSION['username'] = $username;
+    $_SESSION['id'] = $id;
 }
 
 /**

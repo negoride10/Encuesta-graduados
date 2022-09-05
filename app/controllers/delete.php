@@ -9,7 +9,9 @@ $request = parseRequest();
 $easySQL = new EasySQL('encuesta_graduados', 'local');
 $easySQL->table('form_answers')->where('ID', '=', $request->id)->update(
     [
-        'is_deleted' => 1
+        'is_deleted' => 1,
+        'deleted_by' => user()->id
+
     ]
 );
 flashSession('Se ha rechazado el registro exitosamente');

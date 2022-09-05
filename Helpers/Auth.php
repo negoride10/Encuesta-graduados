@@ -17,10 +17,13 @@ function auth(): bool
     return false;
 }
 
-function user(): ?string
+function user(): ?object
 {
     if (auth()) {
-        return $_SESSION['username'];
+        return (object)[
+            'username' => $_SESSION['username'],
+            'id' => $_SESSION['id'],
+        ];
     }
     return null;
 }
