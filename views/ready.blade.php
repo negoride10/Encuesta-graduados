@@ -7,15 +7,21 @@
         <script src="/tablefilter/tablefilter.js"></script>
         {{--DISABLING FILTER ON LAST COLUMN--}}
         <style>
-            #flt11_table1 {
+            #flt10_table1 {
                 display: none;
             }
 
-            #flt11_table2 {
-                display: none;
+
+            th {
+                height: 50px;
+                width: 50px;
+                text-align: center;
+                vertical-align: middle;
             }
 
             td {
+                max-width: 100%;
+                white-space: nowrap;
                 height: 50px;
                 width: 50px;
                 text-align: center;
@@ -74,6 +80,7 @@
             </thead>
             <tbody>
             @foreach($graduatedAnswers as $key=>$answer)
+
                 <tr>
                     <th scope="row">{{$answer['id']}}</th>
                     <td>
@@ -85,6 +92,8 @@
                             {{$answer['official_answers']['Numero de identificacion']}}
                         </p>
                         <hr>
+                        <input type="checkbox" name="{{$key}}" value="1" class="select" disabled>
+
                     </td>
                     <td>
                         <p>
@@ -95,6 +104,8 @@
                             {{$answer['official_answers']['Nombres']}}
                         </p>
                         <hr>
+                        <input type="checkbox" name="{{$key}}" value="1" class="select" disabled>
+
                     </td>
                     <td>
                         <p>
@@ -105,6 +116,8 @@
                             {{$answer['official_answers']['Apellidos']}}
                         </p>
                         <hr>
+                        <input type="checkbox" name="{{$key}}" value="1" class="select" disabled>
+
                     </td>
                     <td>
                         <p>
@@ -115,6 +128,9 @@
                             {{$answer['official_answers']['Correo']}}
                         </p>
                         <hr>
+                        <input type="checkbox" name="email" value="{{$answer['email']}}" class="select"
+                               data-row="{{$answer['id']}}" checked>
+
                     </td>
                     <td>
                         <p>
@@ -125,16 +141,23 @@
                             {{$answer['official_answers']['Telefono de contacto']}}
                         </p>
                         <hr>
+                        <input type="checkbox" name="mobile_phone" value="{{$answer['mobile_phone']}}"
+                               class="select" data-row="{{$answer['id']}}" checked>
+
                     </td>
                     <td>
                         <p>
-                            {{$answer['alternative_mobile_phone']}}
+                            {{$answer['alternative_mobile_phone'] === ''? 'No proporcionado': $answer['alternative_mobile_phone'] }}
                         </p>
                         <hr>
                         <p>
                             {{$answer['official_answers']['Telefono alterno']}}
                         </p>
                         <hr>
+                        <input type="checkbox" name="alternative_mobile_phone"
+                               value="{{$answer['alternative_mobile_phone']}}" class="select"
+                               data-row="{{$answer['id']}}" checked>
+
                     </td>
                     <td>
                         <p>
@@ -145,6 +168,9 @@
                             {{$answer['official_answers']['Ciudad residencia']}}
                         </p>
                         <hr>
+                        <input type="checkbox" name="city" value="{{$answer['city']}}" class="select"
+                               data-row="{{$answer['id']}}" checked>
+
                     </td>
                     <td>
                         <p>
@@ -155,15 +181,27 @@
                             {{$answer['official_answers']['Direccion de correspondencia']}}
                         </p>
                         <hr>
+                        <input type="checkbox" name="address" value="{{$answer['address']}}" class="select"
+                               data-row="{{$answer['id']}}" checked>
+
                     </td>
                     <td>{{$answer['created_at']}}</td>
-                    <td class="align-middle">
-                        <div>
-                            <form action="/app/controllers/approbe.php" method="POST"
-                                  onsubmit="return confirm('¿Estás seguro que deseas migrar a SIGA?')">
+                    <td>
+                        <div class="d-flex align-items-center">
+
+                            <form action="/app/controllers/approve.php" method="POST"
+                                  onsubmit="return approve({{$answer['id']}})" id="form-{{$answer['id']}}">
                                 <input type="text" name="id" value="{{$answer['id']}}" hidden>
-                                <button type="submit" class="btn btn-success d-block mb-2">Aprobar</button>
+                                <input type="text" name="identification_number"
+                                       value="{{$answer['identification_number']}}" hidden>
+                                <div id="formInputs">
+
+                                </div>
+                                <button type="submit"
+                                        class="btn btn-success d-block me-2">Aprobar
+                                </button>
                             </form>
+
 
                             <form action="/app/controllers/deny.php" method="POST"
                                   onsubmit="return confirm('¿Estás seguro que deseas rechazar este registro? Este será eliminado permanentemente de esta pantalla.')">
@@ -174,6 +212,7 @@
 
                     </td>
                 </tr>
+
             @endforeach
             </tbody>
         </table>
@@ -181,6 +220,33 @@
     </div>
 
     @slot('scripts')
+        <script>
+            async function approve(id) {
+                //Get all checked html elements
+                const checks = [...document.getElementsByClassName('select')];
+                //Filter only the clicked row
+                const rowChecks = checks.filter((function (check) {
+                    return check.dataset.row == id && check.checked
+                }))
+
+                //Build final object
+                let finalObject = {};
+                rowChecks.forEach(function (attribute) {
+                    finalObject[attribute.name] = attribute.value
+
+                });
+
+                let form = document.getElementById('form-'+id);
+                Object.entries(finalObject).forEach(function (propertyAndValue) {
+                    let newInput = document.createElement("input");
+                    newInput.name = propertyAndValue[0];
+                    newInput.hidden = true;
+                    newInput.value = propertyAndValue[1];
+                    form.appendChild(newInput);
+                })
+                return true;
+            }
+        </script>
         <script>
             window.addEventListener('load', function () {
                 //Toast

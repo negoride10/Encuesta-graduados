@@ -22,10 +22,12 @@ $graduatedAnswers = $graduatedAnswersConnection->table('form_answers')->select([
     ->where('is_deleted', '=', 0)
     ->get();
 
+$graduatedAnswers = array_slice($graduatedAnswers, 0, 10);
 //Get data from siga
 foreach ($graduatedAnswers as $key => $answer) {
     $graduatedAnswers[$key]['official_answers'] = getUserData($answer['identification_number']);
 }
+
 
 $blade = new BladeOne();
 try {
@@ -48,7 +50,7 @@ try {
 
 function getUserData(string $identification_number)
 {
-    $endpoint = 'https://academia.unibague.edu.co/atlante/graduados_sia.php';
+    $endpoint = 'https://academia.unibague.edu.co/atlante/grad_dat_siga.php';
     $curl = new \Ospina\CurlCobain\CurlCobain($endpoint);
     $curl->setQueryParamsAsArray([
         'consulta' => 'Consultar',

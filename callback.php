@@ -119,7 +119,7 @@ function getAnswersFromRequestAsJsonText($request)
  */
 function verifyIfIsGraduated(string $identification_number): int
 {
-    $endpoint = 'https://academia.unibague.edu.co/atlante/graduados_siga.php';
+    $endpoint = 'https://academia.unibague.edu.co/atlante/graduados_ver_siga.php';
     $curl = new \Ospina\CurlCobain\CurlCobain($endpoint);
     $curl->setQueryParamsAsArray([
         'consulta' => 'Consultar',
