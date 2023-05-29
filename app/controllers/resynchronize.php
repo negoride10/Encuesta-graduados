@@ -26,6 +26,8 @@ $result = $mysql->table('form_answers')
 //Write notification
 
 flashSession($isGraduated === 1 ? 'El usuario ha sido migrado exitosamente' : 'El usuario aún no se encuentra migrado en el SIGA');
+//flashSession('El usuario aún no se encuentra migrado en el SIGA');
+//El usuario ha sido migrado exitosamente
 
 header("Location: " . $_SERVER['HTTP_REFERER']);
 die();
